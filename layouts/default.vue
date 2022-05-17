@@ -1,22 +1,31 @@
 <template>
-    <div class="bg-gray-50 transition-all delay-300" :class="$store.state.showHeaderMenu ? 'to-right' : ''">
-        <component :is="'style'">
+    <div class="bg-white transition-all delay-300" :class="$store.state.showHeaderMenu ? 'to-right' : ''">
+      <component :is="'style'">
             :root{ --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); }
             .bg-primary{ background-color: var(--primary-color); }
-            .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); }
+            <!-- .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); } -->
             .text-primary{ color: var(--primary-color); }
         </component>
+
         <sections-header-top></sections-header-top>
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>
+       
         <Nuxt keep-alive/>
-        <sections-footer></sections-footer>
-        <div class="bg-white flex">
+        
+        <!-- <sections-footer></sections-footer> -->
+        
+        <div class="bg-white flex container">
             <hr class="my-2 w-full">
         </div>
-        <sections-footer-menu></sections-footer-menu>
+
         <sections-copyright></sections-copyright>
+
+        <!-- FULL IMAGE DISPLAYING PRODUCT -->
         <si-full-image></si-full-image>
+        
+         <!-- BACK TO TOP -->
+         <fragments-back-top-icon/>
     </div>
 </template>
 <script>
@@ -57,7 +66,7 @@ export default {
     },
     data() {
         return {
-            rgb: { r: 0, g: 130, b: 70 },
+            rgb: { r: 4, g: 1, b: 200 },
             otherLinks: [
                 ]
         }

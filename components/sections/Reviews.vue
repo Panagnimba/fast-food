@@ -1,7 +1,7 @@
 <template>
-<div v-if="item && item.review.reviews.length > 0" class="container">
-    <div class="m-2">
-      <h2 class="text-2xl">{{ $settings.sections.product.reviews.title }}</h2>
+<div v-if="item && item.review.reviews.length > 0" class="container my-5">
+    <div class="m-2 mb-5">
+      <h2 class="text-3xl text-center reviewsTitle">{{ $settings.sections.product.reviews.title }}</h2>
     </div>
     <div v-if="loading" class="flex justify-center items-center my-5">
       <si-loader></si-loader>
@@ -28,7 +28,7 @@
                         <div>{{ review.content }}</div>
                     </div>
                     <div class="overflow-auto w-full">
-                        <div class="flex bg-gray-100">
+                        <div class="flex">
                             <si-image width="100" height="100" class="w-16 h-16 m-1 bg-white rounded-md shadow cursor-pointer" v-for="(image, index) in review.images" :key="index" :src="image" @click="$store.state.fullImage=image" :alt="`${review.rating} stars - ${review.content}`"/>
                         </div>
                     </div>
@@ -59,3 +59,10 @@ export default {
     }
 }
 </script>
+<style scoped>
+
+  .reviewsTitle{
+    font-family: "Lobster";
+  }
+
+</style>

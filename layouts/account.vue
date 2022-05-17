@@ -9,9 +9,11 @@
         <sections-header-top></sections-header-top>
         <sections-header></sections-header>
         <sections-header-menu></sections-header-menu>
-        <Nuxt />
+        <!-- <Nuxt /> -->
+        <fragments-create-account-form></fragments-create-account-form>
+
         <sections-footer></sections-footer>
-        <div class="bg-white flex">
+        <div class="bg-white flex container">
             <hr class="my-2 w-full">
         </div>
         <sections-footer-menu></sections-footer-menu>

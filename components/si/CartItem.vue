@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="flex justify-between flex-wrap relative mb-2 p-2 shadow">
+        <div class="flex justify-between flex-wrap relative mb-2 p-2 shadow h-1/2">
             <div class="flex md:w-1/2">
-                <div class="flex items-center w-full">
+                <div class="flex items-center w-2/4">
                     <nuxt-link class="w-1/4 flex" :to="`/products/${item.slug}`">
                         <si-image class="border-2 border-gray-300 rounded-md object-contain w-full" :src="item.image" :alt="item.name"/>
                     </nuxt-link>
@@ -25,10 +25,10 @@
                     <b class="text-xl">{{ item.quantity.value }} x</b>
                     <b class="text-xl">{{ item.price }} {{ $store.state.currency.symbol }}</b>
                 </div>
-                <h2 class="text-2xl text-red-700">{{ item.total }} {{ $store.state.currency.symbol }}</h2>
+                <h2 class="text-2xl text-red-700">{{ item.total.toFixed(2) }} {{ $store.state.currency.symbol }}</h2>
             </div>
             <div class="absolute top-0 right-0">
-                <button class="w-8 h-8 justify-center items-center bg-white rounded-md shadow" @click="remove">&times;</button>
+                <button class="w-7 h-7 justify-center items-center bg-primary text-white rounded-md shadow" @click="remove">&times;</button>
             </div>
         </div>
     </div>

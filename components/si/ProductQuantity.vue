@@ -1,14 +1,16 @@
 <template>
-    <div class="flex items-center justify-center">
-        <button @click="inc(-1)" class="bg-gray-50 border py-2 px-4" :class="value > quantity.min ? 'bg-primary text-white' : ''">-</button>
+    <div class="flex justify-center">
         <div class="flex">
-            <label class="relative border py-2 h-full">
-                <span class="px-2 py-4 px-5 text-center ">{{ value }}</span>
-                <input :min="quantity.min" :max="quantity.max" class="px-2 text-center absolute outline-none inset-0 bg-opacity-0 w-full h-full" v-model="value" type="number">
+            <label class="relative border h-full">
+                <span class="px-5 text-center h-full">{{ value }}</span>
+                <input :min="quantity.min" :max="quantity.max" class="px-4 text-center absolute outline-none inset-0 bg-opacity-0 w-full h-full" v-model="value" type="number">
             </label>
-            <span class="flex items-center bg-white border px-2" v-if="quantity.unit">{{ quantity.unit }}</span>
+            <span class="flex items-center bg-white border px-4" v-if="quantity.unit">{{ quantity.unit }}</span>
         </div>
-        <button @click="inc(1)" class="bg-gray-50 border py-2 px-4" :class="value < quantity.instock ? 'bg-primary text-white' : ''">+</button>
+        <div class="flex flex-col">
+            <button @click="inc(1)" class="border p-1 px-3 border-b-0" :class="value < quantity.instock ? 'bg-primary text-white hover:bg-gray-800' : ''">+</button>
+            <button @click="inc(-1)" class="border p-1 px-3" :class="value > quantity.min ? 'bg-primary text-white hover:bg-gray-800' : ''">-</button>
+        </div>
     </div>
 </template>
 

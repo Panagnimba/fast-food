@@ -6,16 +6,17 @@
         <div v-if="item" class="">
             <h1 class="m-2">{{ item.title }}</h1>
             <hr class="m-0">
-            <div class="h-80 shadow p-2 m-2 shadow border-4 border-white bg-cover bg-center relative bg-fixed" :style="`background-image:url('${item.image ? item.image.url : null }')`"></div>
+            <div class="h-80 p-2 m-2 shadow border border bg-cover bg-center relative bg-fixed" :style="`background-image:url('${item.image ? item.image.url : null }')`"></div>
             <p class="m-2"><small>{{ item.excerpt }}</small></p>
             <hr>
             <div  v-if="item" class="bg-white rounded-md p-2 my-3 mx-2 description" id="description" v-html="item.content"></div>
+            
             <div class="flex items-center">
                 <div class=" flex w-full border-b border-gray-200"></div>
-                <h3 class=" whitespace-nowrap p-2">{{ $settings.sections.post.share_buttons.title }}</h3>
+                <h3 class=" whitespace-nowrap p-2"><b>{{ $settings.sections.post.share_buttons.title }}</b></h3>
                 <div class=" flex w-full border-b border-gray-200"></div>
             </div>
-            <div class=" flex justify-center">
+            <div class="flex justify-center">
                 <div v-for="item in socialMedia.filter(s=>$settings.sections.post.share_buttons[s.name])" :key="item.name" class="h-12 m-2 flex items-center justify-center">
                     <a class="h-full flex" :href="item.url" target="_blank" rel="noopener noreferrer">
                         <si-image class="h-10 w-10" width="40" height="40" :src="item.image" :alt="item.name"/>

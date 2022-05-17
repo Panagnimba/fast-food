@@ -1,11 +1,11 @@
 <template>
-<div class="bg-white">
+<div class="bg-white container">
 
     <si-app-loader placement="BEFORE_FOOTER"/>
     <div class="container py-2">
         <div class="flex flex-wrap">
             <div class="w-full md:w-1/2">
-                <div class="p-2 border-r border-l h-full" v-html="$settings.sections.footer.about"></div>
+                <div class="p-3 border-r border-l h-full text-justify" v-html="$settings.sections.footer.about"></div>
             </div>
             <div class="w-full md:w-1/2">
                 <div class="p-2 border-r border-l h-full">
@@ -16,6 +16,8 @@
                         </div>
                     </div>
                     <h3 class=" text-lg">{{ $settings.sections.footer.social_media.title }}</h3>
+                    
+                    <!-- SOCIAL MEDIA ICONS -->
                     <div class="flex flex-wrap">
                         <div v-for="item in socialMedia.filter(s=>$settings.sections.footer.social_media[s.name])" :key="item.name" class="h-12 m-2 flex items-center justify-center">
                             <a class="h-full flex" :href="$settings.sections.footer.social_media[item.name]" target="_blank" rel="noopener noreferrer">
@@ -23,6 +25,7 @@
                             </a>
                         </div>
                     </div>
+                    <!--  -->
                 </div>
             </div>
         </div>

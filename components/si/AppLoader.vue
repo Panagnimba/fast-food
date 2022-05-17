@@ -1,6 +1,5 @@
 <template>
-  <div :id="placement">
-  </div>
+  <div :id="placement"></div>
 </template>
 
 <script>
@@ -12,33 +11,49 @@ export default {
     };
   },
   async mounted() {
-     if(this.$store.state.apps){
-       let apps = this.$store.state.apps.filter(app => app.placement.split('|').indexOf(this.placement) > -1);
-        if (apps.length > 0) {
-          this.loading = true;
-          const element = document.querySelector(`#${this.placement}`);
-          for (let index = 0; index < apps.length; index++) {
-            const app = apps[index];
-            this.loadApp(app, element);
-          }
-        };
-        this.loading = false;
-     }
+    if (this.$store.state.apps) {
+      let apps = this.$store.state.apps.filter(
+        (app) => app.placement.split("|").indexOf(this.placement) > -1
+      );
+      if (apps.length > 0) {
+        this.loading = true;
+        const element = document.querySelector(`#${this.placement}`);
+        for (let index = 0; index < apps.length; index++) {
+          const app = apps[index];
+          this.loadApp(app, element);
+        }
+      }
+      this.loading = false;
+    }
   },
   methods: {
     async loadApp(app, element) {
       const uid = `${app.route}_${this.placement}`;
       if (!app[`loaded_${uid}`]) {
         try {
-          const stateApp = this.$store.state.apps.find(a => a.route === app.route);
+          const stateApp = this.$store.state.apps.find(
+            (a) => a.route === app.route
+          );
           let { manifest, html, css, js } = this.$tools.copy(stateApp.loaded);
-          js = js.replace("__DATA__", JSON.stringify(app.config).replace(/\"/g, '"'));
-          html = html.replace(new RegExp(`app_${app.route}`, "g"),`app_${app.route}_${uid}`);
-          css = css.replace(new RegExp(`#app_${app.route}`, "g"),`#app_${app.route}_${uid}`);
-          js = js.replace(new RegExp(`app_${app.route}`, "g"),`app_${app.route}_${uid}`);
+          js = js.replace(
+            "__DATA__",
+            JSON.stringify(app.config).replace(/\"/g, '"')
+          );
+          html = html.replace(
+            new RegExp(`app_${app.route}`, "g"),
+            `app_${app.route}_${uid}`
+          );
+          css = css.replace(
+            new RegExp(`#app_${app.route}`, "g"),
+            `#app_${app.route}_${uid}`
+          );
+          js = js.replace(
+            new RegExp(`app_${app.route}`, "g"),
+            `app_${app.route}_${uid}`
+          );
           app[`loaded_${uid}`] = { manifest, html, css, js };
         } catch (error) {
-            console.log(error);
+          console.log(error);
         }
       }
       const html = document.createElement(`div`);
@@ -48,7 +63,7 @@ export default {
       element.append(style);
       style.innerHTML = app[`loaded_${uid}`].css;
       window.eval(app[`loaded_${uid}`].js);
-    }
-  }
-}
+    },
+  },
+};
 </script>

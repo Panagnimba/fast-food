@@ -1,14 +1,15 @@
 <template>
   <div class="container">
     <div class="m-2">
-      <h2 class="text-2xl">{{ title }}</h2>
+      <fragments-section-title>{{ title }}</fragments-section-title>
+      <fragments-small-collection v-if="nb==1"></fragments-small-collection>
     </div>
     <div v-if="loading" class="flex justify-center items-center my-5">
       <si-loader></si-loader>
     </div>
     <div class="flex flex-wrap">
-      <div v-for="(item, i) in items" :key="i" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
-        <si-product :item="item"></si-product>
+      <div v-for="(item, i) in items" :key="i" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-5">
+        <si-product :item="item" :id="i"></si-product>
       </div>
     </div>
     <div v-if="!loading && items.length==0" class="flex flex-wrap items-center bg-white p-2 mx-2 border rounded">
@@ -32,7 +33,8 @@
 <script>
 export default {
   props: {
-    section: { type: Object, required: true }
+    section: { type: Object, required: true },
+    nb: { type: Number, required: true }, // just for displaying the small collection when equals to 1
   },
   data() {
     return {

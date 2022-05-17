@@ -1,6 +1,6 @@
 <template>
     <div class="options">
-        <div v-for="(option, i) in options" :key="i" :class="option.key" class="p-1 bg-gray-50 mb-1 border">
+        <div v-for="(option, i) in options" :key="i" :class="option.key" class="p-1 mb-1">
             <b class="capitalize option-name mb-1 flex">{{ option.name }}</b>
             <div class="options-list">
                 <div v-for="(val, ii) in option.values" :key="ii" class="option mx-1">
@@ -46,8 +46,10 @@ export default {
 <style scoped>
 .options {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
 }
 .options .options-list{
     display: flex;

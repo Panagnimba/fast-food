@@ -8,7 +8,7 @@ export default {
     ],
     link: []
   },
-  target: 'server',
+  // target: 'server',
   css: [
     '~/assets/css/icons.css',
     '~/assets/css/main.css'
@@ -23,9 +23,19 @@ export default {
   components: true,
   buildModules: [
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/fontawesome'
   ],
+  fontawesome: {
+    component: "fa",
+    icons: {
+      solid: true,
+      brands: true,
+      regular: true
+    }
+  },
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'storeino-theme-modulevx00',
   ],
   axios: {},
   pwa: {
@@ -35,7 +45,6 @@ export default {
   },
   serverMiddleware: ['~/server/index'],
   server: {
-    port: 3000,
     host: '0.0.0.0'
   },
   build: {
